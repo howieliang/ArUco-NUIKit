@@ -1,11 +1,10 @@
 //*********************************************
-// Example Code: ArUCo Fiducial Marker Detection in OpenCV Python and then send to Processing via OSC
+// Example Code: ArUCo-TUI
 // Rong-Hao Liang: r.liang@tue.nl
 //*********************************************
+// A Toolkit for Designing Tangible User Interfaces with ArUCo Library
 
-// Import the necessary libraries for OSC communication
 import org.ejml.simple.SimpleMatrix;
-
 import oscP5.*;
 import netP5.*;
 
