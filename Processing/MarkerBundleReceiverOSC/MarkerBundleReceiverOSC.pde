@@ -15,8 +15,9 @@ final float SCALE = 100*10;
 boolean matrixCalculated = false;
 
 int[] corners = {1, 3, 2, 0};
-int[][] bundles = {{38, 44, 46, 52}, {42, 48, 50, 56}, {70, 76, 78, 84}}; //IDs of each tag bundles
-PVector[][] vectors = {{new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}}; //reference point of each tag in the bundle
+int[][] bundles = {{5, 11, 13, 19},{9, 15, 17, 23},{33, 39, 41, 47},{37, 43, 45, 51},{61, 67, 69, 75},{65, 71, 73, 79},}; //IDs of each tag bundles
+//{38, 44, 46, 52}, {42, 48, 50, 56}, {70, 76, 78, 84}
+PVector[][] vectors = {{new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)},{new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}, {new PVector(0, -0.02, 0), new PVector(0.02, 0, 0), new PVector(-0.02, 0, 0), new PVector(0, 0.02, 0)}}; //reference point of each tag in the bundle
 ArrayList idBundles;
 ArrayList offsetBundles;
 

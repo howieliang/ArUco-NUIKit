@@ -1,0 +1,68 @@
+import processing.core.*;
+import processing.net.*;
+
+Client client;
+PImage prevFrame;
+
+int camWidth = 1280;
+int camHeight = 720;
+int dataOffset = 163;
+
+void setup() {
+  size(1280, 720);
+  prevFrame = createImage(width, height, RGB);
+  client = new Client(this, "localhost", 8762);
+}
+
+void getGrayscaleImgFromServer() {
+  int messageSize = client.available();
+  if (messageSize > 0) {
+    byte[] sizeBytes = new byte[8];
+    client.readBytes(sizeBytes);
+    int dataSize = (int) (sizeBytes[0] & 0xFF)
+      | (sizeBytes[1] & 0xFF) << 8
+      | (sizeBytes[2] & 0xFF) << 16
+      | (sizeBytes[3] & 0xFF) << 24;
+      println(dataSize);
+      
+    if (dataSize == camWidth*camHeight+dataOffset) { //use the file size returned from the following line.
+      byte[] imageData = new byte[dataSize];
+      client.readBytes(imageData);
+      PImage img = getImage(imageData);
+      if(img != null) prevFrame = img;
+      image(prevFrame, 0, 0, width, height);
+    } else {
+      if (dataSize>0) {
+        byte[] brokenData = new byte[dataSize];
+        client.readBytes(brokenData);
+        println("Bad filesize:", dataSize, "@ Frame:", frameCount);
+      }
+    }
+  }
+}
+
+PImage getImage(byte[] imageData) {
+  PImage img = createImage(width, height, RGB);
+  int[] pixels = new int[width * height];
+  for (int i = 0; i < pixels.length; i++) {
+    pixels[i] = color(imageData[i+149] & 0xFF); //149: the offset found from the following test codes.
+  }
+  //corruption test:
+  int corruptCounter = 0;
+  for (int i = pixels.length-10; i < pixels.length; i++) {
+    if (pixels[i] == color(0)) ++corruptCounter;
+  }
+  if (corruptCounter>0) {
+    println("corrupted:", corruptCounter, "@ Frame:", frameCount);
+    return null;
+  } else {
+    img.pixels = pixels;
+    img.updatePixels();
+    image(img, 0, 0, width, height);
+    return img;
+  }
+}
+
+void draw() {
+  getGrayscaleImgFromServer();
+}
