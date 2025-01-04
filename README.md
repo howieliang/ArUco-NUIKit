@@ -1,2 +1,2 @@
-# ArUCo-TUI
-Toolkit for Designing Tangible User Interfaces with ArUCo Library
+# ArUco-NUIKit
+Toolkit for Designing Natural User Interfaces with ArUCo Library
