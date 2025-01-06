@@ -1,2 +1,2 @@
 # ArUco-NUIKit
-Toolkit for Designing Natural User Interfaces with ArUCo Library
+Toolkit for Designing Natural User Interfaces with ArUco Library
